@@ -1,3 +1,32 @@
 spring:
   application:
-    name: dayron.casas
+    name: spring-webflux-sql
+
+  r2dbc:
+    url: r2dbc:postgresql://ep-tiny-mode-acpvq9uu-pooler.sa-east-1.aws.neon.tech:5432/dayron_casas_06?sslmode=require&channel_binding=require
+    username: neondb_owner
+    password: npg_cQVBAxvPOK40
+    pool:
+      enabled: true
+      initial-size: 5
+      max-size: 20
+      max-idle-time: 30m
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    baseline-on-migrate: true
+
+  datasource:
+    url: jdbc:postgresql://ep-tiny-mode-acpvq9uu-pooler.sa-east-1.aws.neon.tech:5432/dayron_casas_06?sslmode=require&channel_binding=require
+    username: neondb_owner
+    password: npg_cQVBAxvPOK40
+
+server:
+  port: 8080
+
+logging:
+  level:
+    org.springframework.data.r2dbc: DEBUG
+    org.springframework.web.reactive: DEBUG
+    io.r2dbc.postgresql: DEBUG
